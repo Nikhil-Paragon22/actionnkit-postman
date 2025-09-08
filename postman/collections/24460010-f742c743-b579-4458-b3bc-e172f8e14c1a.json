@@ -180,12 +180,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{env}}-actionkit.paragonsandbox.com/projects/{{projectId}}/actions/describe",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/projects/{{projectId}}/actions/describe",
 					"host": [
-						"{{env}}-actionkit",
-						"paragonsandbox",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"projects",
