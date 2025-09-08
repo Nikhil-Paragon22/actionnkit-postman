@@ -285,7 +285,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"action\": \"JIRA_FILTER_ISSUES\",\n    \"parameters\": {\n        \"jqlQuery\": {\n            \"operator\": \"OR\",\n            \"conditions\": [\n                {\n                    \"operator\": \"AND\",\n                    \"conditions\": [\n                        {\n                            \"field\": \"parent\",\n                            \"operator\": \"$stringExactlyMatches\",\n                            \"value\": \"28871\"\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"raw": "{\n    \"action\": \"AMAZON_S3_DOWNLOAD_FILE\",\n    \"parameters\": {\n        \"bucketName\": \"paragonqabucket\",\n        \"downlaodFilename\": \"pexels-antonio-mistretta-462550853-33722888.jpg\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
