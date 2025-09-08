@@ -254,14 +254,7 @@
 			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{sandboxToken}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -285,7 +278,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"action\": \"AMAZON_S3_DOWNLOAD_FILE\",\n    \"parameters\": {\n        \"bucketName\": \"paragonqabucket\",\n        \"downloadFileName\": \"asheesh-test-10mb-custom.pdf\"\n    }\n}",
+					"raw": "{\n    \"action\": \"AMAZON_S3_DOWNLOAD_FILE\",\n    \"parameters\": {\n        \"bucketName\": \"paragonqabucket\",\n        \"downloadFileName\": \"99mb.jpg\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
