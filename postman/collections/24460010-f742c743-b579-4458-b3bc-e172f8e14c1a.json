@@ -285,7 +285,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"action\": \"AMAZON_S3_DOWNLOAD_FILE\",\n    \"parameters\": {\n        \"bucketName\": \"paragonqabucket\",\n        \"downlaodFileName\": \"pexels-antonio-mistretta-462550853-33722888.jpg\"\n    }\n}",
+					"raw": "{\n    \"action\": \"AMAZON_S3_DOWNLOAD_FILE\",\n    \"parameters\": {\n        \"bucketName\": \"paragonqabucket\",\n        \"downloadFileName\": \"asheesh-test-10mb-custom.pdf\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -293,14 +293,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/projects/{{projectId}}/action",
+					"raw": "{{baseUrl}}/projects/{{projectId}}/actions",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"projects",
 						"{{projectId}}",
-						"action"
+						"actions"
 					],
 					"query": [
 						{
