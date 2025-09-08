@@ -111,7 +111,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/projects/{{projectId}}/actions?integrations=googledrive",
+					"raw": "{{baseUrl}}/projects/{{projectId}}/actions?integrations=amazons3",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -132,13 +132,14 @@
 							"disabled": true
 						},
 						{
-							"key": "integrations",
-							"value": "googledrive"
-						},
-						{
 							"key": "limit_to_available",
 							"value": "false",
 							"disabled": true
+						},
+						{
+							"key": "integrations",
+							"value": "amazons3",
+							"type": "text"
 						}
 					]
 				},
