@@ -293,17 +293,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{env}}-actionkit.paragonsandbox.com/projects/{{projectId}}/actions",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/projects/{{projectId}}/action",
 					"host": [
-						"{{env}}-actionkit",
-						"paragonsandbox",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"projects",
 						"{{projectId}}",
-						"actions"
+						"action"
 					],
 					"query": [
 						{
