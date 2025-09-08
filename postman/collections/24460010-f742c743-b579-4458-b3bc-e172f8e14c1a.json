@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "24460010-f742c743-b579-4458-b3bc-e172f8e14c1a",
+		"name": "ActionKitAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllActions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9ad93ff-6279-4c33-bd4e-5968e34dc120",
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>Type</th>",
+							"        <th>Function Name</th>",
+							"        <th>Description</th>",
+							"        <th>Parameter Type</th>",
+							"        <th>Summary Type</th>",
+							"        <th>Project Type</th>",
+							"        <th>Issue Type Type</th>",
+							"        <th>Jira Issue Status Type</th>",
+							"        <th>Assignee Type</th>",
+							"        <th>Description Type</th>",
+							"        <th>Enum</th>",
+							"        <th>Description Type</th>",
+							"        <th>Additional Fields Type</th>",
+							"        <th>Required</th>",
+							"        <th>Additional Properties</th>",
+							"    </tr>",
+							"    ",
+							"    {{#each response.actions.jira}}",
+							"        <tr>",
+							"            <td>{{type}}</td>",
+							"            <td>{{function.name}}</td>",
+							"            <td>{{function.description}}</td>",
+							"            <td>{{function.parameters.type}}</td>",
+							"            <td>{{function.parameters.properties.summary.type}}</td>",
+							"            <td>{{function.parameters.properties.project.type}}</td>",
+							"            <td>{{function.parameters.properties.issueType.type}}</td>",
+							"            <td>{{function.parameters.properties.jiraIssueStatus.type}}</td>",
+							"            <td>{{function.parameters.properties.assignee.type}}</td>",
+							"            <td>{{function.parameters.properties.descriptionType.type}}</td>",
+							"            <td>{{function.parameters.properties.descriptionType.enum.[0]}}</td>",
+							"            <td>{{function.parameters.properties.description.type}}</td>",
+							"            <td>{{function.parameters.properties.additionalFields.type}}</td>",
+							"            <td>{{function.parameters.required.[0]}}</td>",
+							"            <td>{{function.parameters.additionalProperties}}</td>",
+							"        </tr>",
+							"    {{/each}}",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return {response: pm.response.json()}",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "747450d2-fb41-4a72-b668-0d0b9d688a4e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "24460010-a4690d88-ee34-4502-b14e-9604fa2a8d66",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Paragon-Credential",
+						"value": "f78c39d1-d22c-476b-b913-00941b2a8a82",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/projects/{{projectId}}/actions?integrations=googledrive",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"projects",
+						"{{projectId}}",
+						"actions"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "paragon",
+							"disabled": true
+						},
+						{
+							"key": "reload_fields",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "integrations",
+							"value": "googledrive"
+						},
+						{
+							"key": "limit_to_available",
+							"value": "false",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This endpoint makes an HTTP GET request to retrieve actions for a specific project, with the option to filter by integrations. The `projectId` path parameter specifies the project for which the actions are being retrieved. The query parameters include `limit_to_available` to control whether to limit the actions to available ones, and `integrations` to filter actions by a specific integration, in this case, Salesforce.\n\nThe response of this request is a JSON schema representing the structure of the data returned by the API endpoint."
+			},
+			"response": []
+		},
+		{
+			"name": "DescribeAction",
+			"id": "24460010-9ba91baa-4580-40e2-b02d-063e9d3a3efc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"PIPEDRIVE_DESCRIBE_ACTION_SCHEMA\",\n    \"parameters\": {\n        \"recordType\": \"activity\",\n        \"operation\": \"CREATE_RECORD\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{env}}-actionkit.paragonsandbox.com/projects/{{projectId}}/actions/describe",
+					"protocol": "https",
+					"host": [
+						"{{env}}-actionkit",
+						"paragonsandbox",
+						"com"
+					],
+					"path": [
+						"projects",
+						"{{projectId}}",
+						"actions",
+						"describe"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "paragon",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "limit_to_available",
+							"value": "false",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run Action",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0f9c80bd-6132-478d-b216-5ddf5f556115",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: \"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\",",
+							"    method: \"GET\",",
+							"    responseType: \"arraybuffer\"",
+							"}, function (err, response) {",
+							"    if (err) {",
+							"        console.error(\"Error fetching file:\", err);",
+							"    } else {",
+							"        pm.environment.set(\"fileBuffer\", response.stream);",
+							"        console.log(response)",
+							"    }",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5396ee7a-98b4-4903-b308-6a2db544c8a9",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "24460010-cdd345fc-00c3-42ee-89b3-0f4e59ea3b46",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{sandboxToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "x-paragon-credential",
+						"value": "f78c39d1-d22c-476b-b913-00941b2a8a82",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"JIRA_FILTER_ISSUES\",\n    \"parameters\": {\n        \"jqlQuery\": {\n            \"operator\": \"OR\",\n            \"conditions\": [\n                {\n                    \"operator\": \"AND\",\n                    \"conditions\": [\n                        {\n                            \"field\": \"parent\",\n                            \"operator\": \"$stringExactlyMatches\",\n                            \"value\": \"28871\"\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{env}}-actionkit.paragonsandbox.com/projects/{{projectId}}/actions",
+					"protocol": "https",
+					"host": [
+						"{{env}}-actionkit",
+						"paragonsandbox",
+						"com"
+					],
+					"path": [
+						"projects",
+						"{{projectId}}",
+						"actions"
+					],
+					"query": [
+						{
+							"key": "limit_to_available",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "x-paragon-credential",
+							"value": "21c870c7-c92d-4b3e-bae9-52d885174d61",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "paragon",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "24460010-40f4359b-8865-4278-b1dc-a967aa04c6ce",
+					"name": "Run Action",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-paragon-credential",
+								"value": "d9a169b8-7197-4813-9f50-5973f7a93f91",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"SERVICENOW_CREATE_TICKET\",\n    \"parameters\": {\n        \"ticketType\": \"incident\",\n        \"description\": \"QA testing actionkit incident\",\n        \"severity\": \"3\",\n        \"name\": \"testing incident actionkit down\",\n        \"shortDescription\": \"shortDescription for incident\",\n        \"status\": \"New\",\n        \"referredType\": \"customer\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/projects/{{projectId}}/actions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects",
+								"{{projectId}}",
+								"actions"
+							],
+							"query": [
+								{
+									"key": "limit_to_available",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "x-paragon-credential",
+									"value": "21c870c7-c92d-4b3e-bae9-52d885174d61",
+									"disabled": true
+								},
+								{
+									"key": "format",
+									"value": "paragon",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 25 Jun 2025 12:26:22 GMT",
+							"uuid": "53ecfa10-4a6a-45e8-9182-3fecdf079fe7"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"uuid": "d15fd8ee-d089-4e01-83d9-71050fb7e8bf"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2057",
+							"uuid": "5936da77-f29a-49e2-9b26-1b300806de99"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"uuid": "8212f69b-eb5c-44dd-9445-8b45164622c4"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "955473ecfddcf9e6-SIN",
+							"uuid": "763739b3-eaaa-4e72-97c2-5df177c58dd4"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express",
+							"uuid": "21944629-2e9b-4332-b045-68f23222110c"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"uuid": "558a95e8-0669-4b8c-a234-d9d7792f88b5"
+						},
+						{
+							"key": "x-paragon-feature",
+							"value": "ACTION_KIT_RUN_ACTION",
+							"uuid": "8059d45f-1407-4bb9-bc3d-42106949aaa4"
+						},
+						{
+							"key": "x-paragon-feature-category",
+							"value": "ACTION_KIT",
+							"uuid": "8dae4900-715f-49cf-88fe-330af93848e6"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"809-iPA8GMPKGzjN6lbB3heAAFB72ok\"",
+							"uuid": "397c1489-5e14-4d92-a37d-45046f64c245"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC",
+							"uuid": "2e6c0026-b188-452d-88cb-0bce607f4e9c"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=YguT6mf5Yt50yrvsKy3afSg2U3KT3YmkSBZbyRrkII%2FPHWgo91242s72IKMlYsPB3TgRl4hoOB%2Bu%2Bz%2FZC7maPgPqCU2X05W5%2FUSIIPbXAxmF7c4OJ8JzYxvuYFYAlhA4a9oVje9%2F9BRywXPMHeZDGJT8l5I%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+							"uuid": "c242269b-4d6b-4728-8c92-9ab09ff46ca6"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+							"uuid": "9dd5f517-be0c-4c30-aca7-fd79357b8578"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=2592000; includeSubDomains",
+							"uuid": "8c5152a2-07c5-4dd9-a249-5dfc946fb62b"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare",
+							"uuid": "a3496c81-95ec-4588-81bb-b86a434f1df8"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400",
+							"uuid": "87934466-fe48-4463-a32f-0a44da3e5f8e"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=252609&min_rtt=238771&rtt_var=91952&sent=8&recv=10&lost=0&retrans=0&sent_bytes=4621&recv_bytes=3645&delivery_rate=10167&cwnd=253&unsent_bytes=0&cid=ef83a869da8ba0ce&ts=56466&x=0\"",
+							"uuid": "98dacab2-d335-458e-b675-b5c34609e236"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"result\": {\n        \"parent\": \"\",\n        \"made_sla\": \"true\",\n        \"caused_by\": \"\",\n        \"watch_list\": \"\",\n        \"upon_reject\": \"cancel\",\n        \"sys_updated_on\": \"2025-06-25 12:26:21\",\n        \"child_incidents\": \"0\",\n        \"hold_reason\": \"\",\n        \"origin_table\": \"\",\n        \"task_effective_number\": \"INC0010003\",\n        \"approval_history\": \"\",\n        \"number\": \"INC0010003\",\n        \"resolved_by\": \"\",\n        \"sys_updated_by\": \"admin\",\n        \"opened_by\": {\n            \"link\": \"https://dev204905.service-now.com/api/now/v1/table/sys_user/6816f79cc0a8016401c5a33be04be441\",\n            \"value\": \"6816f79cc0a8016401c5a33be04be441\"\n        },\n        \"user_input\": \"\",\n        \"sys_created_on\": \"2025-06-25 12:26:21\",\n        \"sys_domain\": {\n            \"link\": \"https://dev204905.service-now.com/api/now/v1/table/sys_user_group/global\",\n            \"value\": \"global\"\n        },\n        \"state\": \"1\",\n        \"route_reason\": \"\",\n        \"sys_created_by\": \"admin\",\n        \"knowledge\": \"false\",\n        \"order\": \"\",\n        \"calendar_stc\": \"\",\n        \"closed_at\": \"\",\n        \"cmdb_ci\": \"\",\n        \"delivery_plan\": \"\",\n        \"contract\": \"\",\n        \"impact\": \"3\",\n        \"active\": \"true\",\n        \"work_notes_list\": \"\",\n        \"business_service\": \"\",\n        \"business_impact\": \"\",\n        \"priority\": \"5\",\n        \"sys_domain_path\": \"/\",\n        \"rfc\": \"\",\n        \"time_worked\": \"\",\n        \"expected_start\": \"\",\n        \"opened_at\": \"2025-06-25 12:26:21\",\n        \"business_duration\": \"\",\n        \"group_list\": \"\",\n        \"work_end\": \"\",\n        \"caller_id\": \"\",\n        \"reopened_time\": \"\",\n        \"resolved_at\": \"\",\n        \"approval_set\": \"\",\n        \"subcategory\": \"\",\n        \"work_notes\": \"\",\n        \"universal_request\": \"\",\n        \"short_description\": \"shortDescription for incident\",\n        \"close_code\": \"\",\n        \"correlation_display\": \"\",\n        \"delivery_task\": \"\",\n        \"work_start\": \"\",\n        \"assignment_group\": \"\",\n        \"additional_assignee_list\": \"\",\n        \"business_stc\": \"\",\n        \"cause\": \"\",\n        \"description\": \"\",\n        \"origin_id\": \"\",\n        \"calendar_duration\": \"\",\n        \"close_notes\": \"\",\n        \"notify\": \"1\",\n        \"service_offering\": \"\",\n        \"sys_class_name\": \"incident\",\n        \"closed_by\": \"\",\n        \"follow_up\": \"\",\n        \"parent_incident\": \"\",\n        \"sys_id\": \"608b4ceac3562210f5f87fd1b401319c\",\n        \"contact_type\": \"\",\n        \"reopened_by\": \"\",\n        \"incident_state\": \"1\",\n        \"urgency\": \"3\",\n        \"problem_id\": \"\",\n        \"company\": \"\",\n        \"reassignment_count\": \"0\",\n        \"activity_due\": \"\",\n        \"assigned_to\": \"\",\n        \"severity\": \"3\",\n        \"comments\": \"\",\n        \"approval\": \"not requested\",\n        \"sla_due\": \"\",\n        \"comments_and_work_notes\": \"\",\n        \"due_date\": \"\",\n        \"sys_mod_count\": \"0\",\n        \"reopen_count\": \"0\",\n        \"sys_tags\": \"\",\n        \"escalation\": \"0\",\n        \"upon_approval\": \"proceed\",\n        \"correlation_id\": \"\",\n        \"location\": \"\",\n        \"category\": \"inquiry\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
